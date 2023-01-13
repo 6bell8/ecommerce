@@ -7,7 +7,6 @@ export const Home = ({ products, bannerData }) => {
   return (
     <div>
       <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
-      {console.log(bannerData)}
       <div className="products-heading">
         <h2>베스트 인기 상품</h2>
         <p>다양한 종류의 스피커</p>
