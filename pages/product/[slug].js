@@ -12,8 +12,14 @@ import { useStateContext } from "../../context/StateContext";
 
 const ProductDetails = ({ product, products }) => {
   const { image, name, details, price } = product;
-  const { decQty, incQty, qty, onAdd } = useStateContext();
+  const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
   const [index, setIndex] = useState(0);
+
+  const handleBuyNow = () => {
+    onAdd(product, qty);
+
+    setShowCart(true);
+  };
   return (
     <div>
       <div className="product-detail-container">
@@ -26,6 +32,7 @@ const ProductDetails = ({ product, products }) => {
           <div className="small-images-container">
             {image?.map((item, i) => (
               <img
+                key={i}
                 src={urlFor(item)}
                 className={
                   i === index ? "small-image selected-image" : "small-image"
@@ -80,7 +87,7 @@ const ProductDetails = ({ product, products }) => {
             >
               장바구니 담기
             </button>
-            <button type="button" className="buy-now" onClick="">
+            <button type="button" className="buy-now" onClick={handleBuyNow}>
               주문하기
             </button>
           </div>

@@ -35,9 +35,12 @@ const Cart = () => {
     });
 
     if (response.statusCode === 500) return;
+
     const data = await response.json();
-    toast.loading("재전송 중 입니다..");
-    stripe.redirectToCheckout({ session: data.id });
+
+    toast.loading("Redirecting...");
+
+    stripe.redirectToCheckout({ sessionId: data.id });
   };
 
   return (
